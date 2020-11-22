@@ -1,0 +1,12 @@
+{% extends '_shared/base.html' %}
+{% load static %}
+
+{% block content %}
+  <header>
+    <h1>S3 Example Static Only</h1>
+  </header>
+  <main>
+    <img src="{% static 'thumbs-up.png' %}">
+    <h2>It's working!</h2>
+  </main>
+{% endblock content %}
