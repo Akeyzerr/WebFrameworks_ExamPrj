@@ -1,9 +1,9 @@
 from django.urls import path
 
-from blog import views as blog_views
+from . import views as blog_views
 
 urlpatterns = [
-    path('', blog_views.index, name="home"),
+    path('', blog_views.index, name="blog-home"),
     # path('/upload', blog_views.DocumentCreateView, name="upload"),
     # path('create/', recipes_views.create, name="create_recipe"),
     # path('edit/<int:id>/', recipes_views.update, name="update_recipe"),

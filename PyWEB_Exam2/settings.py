@@ -20,7 +20,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
-    'blog'
+    'users.apps.UsersConfig',
+    'blog.apps.BlogConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -36,7 +38,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'PyWEB_Exam2.urls'
 
-USE_S3 = True
+USE_S3 = config("USE_S3", cast=bool)
 
 if USE_S3:
     # aws settings
@@ -56,9 +58,9 @@ if USE_S3:
 
     AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
     PRIVATE_FILE_STORAGE = 'PyWEB_Exam2.storage_backends.PrivateMediaStorage'
-else:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    STATIC_URL = '/static/'
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_URL = '/static/'
 
 STATIC_ROOT = join(BASE_DIR, 'staticfiles/')
 STATICFILES_DIRS = (join(BASE_DIR, "static/"),)
@@ -82,12 +84,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'PyWEB_Exam2.wsgi.application'
 
 DATABASES = {'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config("DB_NAME"),
-        'USER': config("DB_USER"),
-        'PASSWORD': config("DB_PASSWORD"),
-        'HOST': config("DB_HOST"),
-        'PORT': '5432'}}
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': config("DB_NAME"),
+    'USER': config("DB_USER"),
+    'PASSWORD': config("DB_PASSWORD"),
+    'HOST': config("DB_HOST"),
+    'PORT': '5432'}}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,3 +115,5 @@ USE_L10N = True
 USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'blog-home'
