@@ -2,20 +2,19 @@
 footer {
     position: fixed;
     bottom: 0;
-    background: #607581;
+    background: linear-gradient(to right, #5f788a 75%, #3e4d59 100%);
     width: 100%;
     padding: 6px 0;
 }
 
 footer div {
     text-align: center;
-    color: #cbd5db;
+    color: #e6dfdf;
 }
 
 body {
-  background: #fafafa;
-  color: #333333;
-  /*margin-top: 5rem;*/
+  background: linear-gradient(to right, #dae0e6 50%, #bfcdd9 100%);
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,11 +22,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ul {
-  margin: 0;
+  margin: 10px 0;
 }
 
 .bg-steel {
-  background-color: #5f788a;
+  background: linear-gradient(to right, #5f788a 75%, #3e4d59 100%);
+
 }
 
 .site-header .navbar-nav .nav-link {
@@ -87,8 +87,8 @@ a.article-title:hover {
 }
 
 .account-img {
-  height: 125px;
-  width: 125px;
+  height: 150px;
+  width: 150px;
   margin-right: 20px;
   margin-bottom: 16px;
 }

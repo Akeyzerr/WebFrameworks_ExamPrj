@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 # from PyWEB_Exam2.storage_backend import PrivateMediaStorage
 
@@ -13,6 +14,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def absolute_url(self):
+        return reverse('post-detail', kwargs={'pk': self.pk})
 
 # class Document(models.Model):
 #     uploaded_at = models.DateTimeField(auto_now_add=True)
