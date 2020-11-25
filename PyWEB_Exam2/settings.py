@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'captcha',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
 
@@ -59,7 +60,8 @@ if USE_S3:
     AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
     PRIVATE_FILE_STORAGE = 'PyWEB_Exam2.storage_backends.PrivateMediaStorage'
 
-else: # doesn't work ffs; DO NOT USE or all hell breaks lose
+else:
+    """this won't work at all; DO NOT USE or all hell breaks lose"""
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     STATIC_URL = '/static/'
 

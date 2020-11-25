@@ -4,8 +4,8 @@ from storages.backends.s3boto3 import S3Boto3Storage
 
 
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
-# class StaticStorage(S3Boto3Storage, ABC):
-#     location = settings.AWS_STATIC_LOCATION
+class StaticStorage(S3Boto3Storage, ABC):
+    location = settings.AWS_STATIC_LOCATION
 
 
 class PublicMediaStorage(S3Boto3Storage, ABC):
