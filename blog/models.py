@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from PyWEB_Exam2.storage_backend import PrivateMediaStorage
+# from PyWEB_Exam2.storage_backend import PrivateMediaStorage
 
 
 class Post(models.Model):
