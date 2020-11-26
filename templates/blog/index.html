@@ -1,5 +1,6 @@
 {% extends '_shared/base.html' %}
 {% load static %}
+{% load post_preview %}
 
 {% block content %}
     {% for post in posts %}
@@ -8,10 +9,11 @@
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ post.author }}</a>
-                    <small class="text-muted">{{ post.date_posted|date:"d F, Y" }}</small>
+                    <small class="text-muted">{{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content">{{ post.content|post_preview:200 }}</p>
+                <a class="text-muted" href="{% url 'post-detail' post.id %}">Click here to read more.</a>
             </div>
         </article>
     {% endfor %}

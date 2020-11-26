@@ -3,6 +3,7 @@ from os.path import join
 from pathlib import Path
 from decouple import config
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
@@ -23,7 +24,7 @@ INSTALLED_APPS = [
     'captcha',
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
-
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [

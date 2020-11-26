@@ -7,6 +7,7 @@ from PyWEB_Exam2 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('homepage.urls'), name='homepage'),
     path('blog/', include('blog.urls')),
     path('register/', user_views.register, name="register"),
     path('profile/', user_views.profile, name='profile'),
@@ -15,5 +16,5 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
 ]
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

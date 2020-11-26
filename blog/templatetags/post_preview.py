@@ -4,5 +4,6 @@ register = template.Library()
 
 
 @register.filter
-def post_preview(contents):
-    return [t[:150] for t in contents]
+def post_preview(contents, cutoff):
+    content = contents[:cutoff] + " ..."
+    return content if len(contents) > 140 else contents

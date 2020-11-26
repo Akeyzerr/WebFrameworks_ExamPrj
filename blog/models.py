@@ -1,16 +1,20 @@
-from django.conf import settings
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-# from PyWEB_Exam2.storage_backend import PrivateMediaStorage
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    date_posted = models.DateTimeField(default=timezone.now) # can be modified later
+    date_posted = models.DateTimeField(auto_now=True)
+    date_edited = models.DateTimeField(default=timezone.now) # can be modified later
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_public = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['-date_edited']
 
     def __str__(self):
         return self.title
