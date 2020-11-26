@@ -1,0 +1,10 @@
+<div class="content-section">
+    <h3>fwks toolbar</h3>
+    {% if user.is_authenticated %}
+        <p class='text-muted'>Hello, {{ user.username }}!</p>
+        {% include "_partials/sidebar_auth.html" %}
+    {% else %}
+        <p class='text-muted'>Hey, register to use our awesome tools!</p>
+        {% include "_partials/sidebar_guest.html" %}
+    {% endif %}
+</div>
