@@ -9,9 +9,15 @@
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ post.author }}</a>
-                    <small class="text-muted">{{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
+                    {% if post.date_edited.minute == post.date_posted.minute %}
+                        <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
+                    {% else %}
+                        <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
+                        <small class="text-muted">Last edited: {{ post.date_edited|date:"G:i - D, j N, Y" }}</small>
+                    {% endif %}
                 </div>
                 <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+{#                USED A CUSTOM TEMPLATE TAG#}
                 <p class="article-content">{{ post.content|post_preview:200 }}</p>
                 <a class="text-muted" href="{% url 'post-detail' post.id %}">Click here to read more.</a>
             </div>

@@ -54,6 +54,10 @@ ul {
   color: #444444;
 }
 
+.article-title-private {
+  color: #8c6362;
+}
+
 a.article-title:hover {
   color: #428bca;
   text-decoration: none;
