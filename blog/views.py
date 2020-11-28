@@ -1,21 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import *
-from django_currentuser.middleware import (
-    get_current_user, get_current_authenticated_user)
-
-# class DocumentCreateView(CreateView):
-#     model = Document
-#     fields = ['upload', ]
-#     success_url = reverse_lazy('home')
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         documents = Document.objects.all()
-#         context['documents'] = documents
-#         return context
+from django_currentuser.middleware import get_current_authenticated_user
 
 
 class PostListView(ListView):
@@ -40,7 +28,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['title', 'content', 'is_public']
     success_url = '/blog'
 
-
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -63,6 +50,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
+@login_required
 def detail_view(request, pk):
     author = get_current_authenticated_user()
     posts = Post.objects.get(pk=pk)
@@ -70,9 +58,10 @@ def detail_view(request, pk):
         'author': author,
         'object': posts,
     }
-    return render(request, 'blog/post_detail.html',context)
+    return render(request, 'blog/post_detail.html', context)
 
 
+@login_required
 def all_my_posts(request):
     posts = Post.objects.filter(author=get_current_authenticated_user()).order_by('-date_posted')
     context = {

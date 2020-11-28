@@ -13,36 +13,15 @@
                     <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
                     <a class="nav-item nav-link" href="#">Todo</a>
                 {% else %}
-                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-                    <a class="nav-item nav-link" href="#">About</a>
+                    <a class="nav-item nav-link" href="{% url 'homepage' %}">Home</a>
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
                 {% endif %}
             </div>
-            <div class="navbar-nav">
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Dropdown link
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">
-                                <a href="{% url 'post-create' %}">Create post</a>
-                            </li>
-                            <li class="list-group-item list-group-item-light">
-                                <a href="{% url 'all-user-posts' %}">All my posts</a>
-                            </li>
-                            <li class="list-group-item list-group-item-light">
-                                <a href="#">Add a To Do task</a>
-                            </li>
-                            <li class="list-group-item list-group-item-light">
-                                <a href="{% url 'logout' %}">Logout</a>
-                            </li>
-                            <ul>
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
-                    </div>
-                </div>
-            </div>
+            {% if user.is_authenticated %}
+                {% include "_partials/dropdown_auth.html"%}
+                {% else %}
+                {% include "_partials/dropdown_guest.html"%}
+            {% endif %}
         </div>
     </div>
 </nav>

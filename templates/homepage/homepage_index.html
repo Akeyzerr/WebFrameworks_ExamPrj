@@ -1,10 +1,24 @@
 {% extends '_shared/base.html' %}
 {% load static %}
 
-{% block header %}
-{#    {% include "_partials/header.html" %}#}
-{% endblock header %}
-
 {% block content %}
-    <h1> Landing page. </h1>
+    {% for entry in entries %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ entry.created_by.profile.image.url }}" alt="#">
+            <div class="media-body">
+                <div class="article-title">
+                    <h3>{{ entry.title }}</h3>
+                    <h6>{{ entry.requirement }}</h6>
+                    <div class="article-metadata"></div>
+                </div>
+                <p class="article-title">{{ entry.implementation }}</p>
+                <div class="article-metadata"></div>
+                <div class="article-metadata">
+                    <small class="text-muted">Last updated: {{ entry.date_updated|date:"G:i - D, j N, Y" }};</small>
+                    <small class="btn-outline-secondary">State: {{ entry.state }}</small>
+                    <small class="mr-2">{{ entry.status }}</small>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
 {% endblock content %}

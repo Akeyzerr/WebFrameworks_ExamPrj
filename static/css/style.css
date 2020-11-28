@@ -14,7 +14,6 @@ footer div {
 
 body {
   background: linear-gradient(to right, #dae0e6 50%, #bfcdd9 100%);
-
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,6 +47,7 @@ ul {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
+  overflow: visible;
 }
 
 .article-title {
