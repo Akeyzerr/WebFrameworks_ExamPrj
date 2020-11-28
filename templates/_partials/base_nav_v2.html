@@ -18,9 +18,9 @@
                 {% endif %}
             </div>
             {% if user.is_authenticated %}
-                {% include "_partials/dropdown_auth.html"%}
-                {% else %}
-                {% include "_partials/dropdown_guest.html"%}
+                {% include "_partials/dropdown_auth.html" %}
+            {% else %}
+                {% include "_partials/dropdown_guest.html" %}
             {% endif %}
         </div>
     </div>

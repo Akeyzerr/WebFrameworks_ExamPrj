@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
 from PyWEB_Exam2 import settings
+from homepage import views as handler_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,3 +19,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# handler403 = 'homepage.views.permission_denied_view'
+handler404 = 'homepage.views.page_not_found_view'
+handler500 = 'homepage.views.server_error_view'

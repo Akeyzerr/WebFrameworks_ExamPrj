@@ -12,3 +12,15 @@ def index(request):
         "entries": entries,
     }
     return render(request, 'homepage/homepage_index.html', context)
+
+
+def page_not_found_view(request, exception):
+    return render(request, '404.html', exception)
+
+
+def server_error_view(request):
+    return render(request, '500.html')
+
+
+def permission_denied_view(request, exception):
+    return render(request, '403.html', exception)
