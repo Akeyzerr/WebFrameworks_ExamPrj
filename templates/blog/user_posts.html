@@ -1,0 +1,28 @@
+{% extends '_shared/base.html' %}
+{% load static %}
+{% load post_preview %}
+
+{% block content %}
+    <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+    {% include '_partials/paginator.html' %}
+
+    {% for post in page_obj %}
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="#">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                        {% if post.date_edited.minute == post.date_posted.minute %}
+                            <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
+                        {% else %}
+                            <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
+                            <small class="text-muted">Last edited: {{ post.date_edited|date:"G:i - D, j N, Y" }}</small>
+                        {% endif %}
+                    </div>
+                    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                    <p class="article-content">{{ post.content|post_preview:150 }}</p>
+                </div>
+            </article>
+    {% endfor %}
+
+{% endblock content %}

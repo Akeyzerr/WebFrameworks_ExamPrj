@@ -3,13 +3,14 @@
 {% load post_preview %}
 
 {% block content %}
-    {% for post in posts %}
+    {% include '_partials/paginator.html' %}
+    {% for post in page_obj %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="#">
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ post.author }}</a>
-                    {% if post.date_edited.minute == post.date_posted.minute%}
+                    {% if post.date_edited.minute == post.date_posted.minute %}
                         <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
                     {% else %}
                         <small class="text-muted">Posted: {{ post.date_posted|date:"G:i - D, j N, Y" }}</small>
@@ -27,4 +28,5 @@
             </div>
         </article>
     {% endfor %}
+
 {% endblock content %}

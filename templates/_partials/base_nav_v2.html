@@ -13,8 +13,8 @@
                     <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
                     <a class="nav-item nav-link" href="#">Todo</a>
                 {% else %}
-                    <a class="nav-item nav-link" href="{% url 'homepage' %}">Home</a>
-                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
+{#                    <a class="nav-item nav-link" href="{% url 'homepage' %}">Home</a>#}
+                    <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog Posts Preview!</a>
                 {% endif %}
             </div>
             {% if user.is_authenticated %}

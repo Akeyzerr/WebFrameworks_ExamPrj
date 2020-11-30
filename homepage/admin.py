@@ -17,4 +17,5 @@ class EntryAdmin(admin.ModelAdmin):
             obj.edited_by = request.user
         obj.save()
 
+
 admin.site.register(Entry, EntryAdmin)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PyWEB_Exam2.storage_backend import *
-from PIL import Image
+# from PIL import Image
 
 
 class Profile(models.Model):

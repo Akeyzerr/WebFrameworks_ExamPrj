@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block content %}
-    {% for entry in entries %}
+    <h1 class="mb-3">Exam Requirements</h1>
+    {% include '_partials/paginator.html' %}
+    {% for entry in page_obj %}
         <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ entry.created_by.profile.image.url }}" alt="#">
             <div class="media-body">
                 <div class="article-title">
-                    <h3>{{ entry.title }}</h3>
-                    <h6>{{ entry.requirement }}</h6>
-                    <div class="article-metadata"></div>
+                    <span><h4>{{ entry.title }}</h4>
+                    <h6>{{ entry.requirement }}</h6></span>
                 </div>
                 <p class="article-title">{{ entry.implementation }}</p>
                 <div class="article-metadata"></div>

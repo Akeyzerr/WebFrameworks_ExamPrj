@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django_currentuser.middleware import get_current_authenticated_user
-
+from django.core.paginator import Paginator
 from .models import Entry
 
 
 def index(request):
-    author = get_current_authenticated_user()
-    entries = Entry.objects.all().order_by('pk')
+    entries = Entry.objects.all().order_by('date_created')
+    paginator = Paginator(entries, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        "author": author,
-        "entries": entries,
+        "page_obj": page_obj,
     }
     return render(request, 'homepage/homepage_index.html', context)
 
