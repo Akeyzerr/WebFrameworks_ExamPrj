@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
 
 
 class Entry(models.Model):
@@ -28,3 +27,14 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Quotes(models.Model):
+    QUOTE_TAGS = (
+        (True, 'Clean'),
+        (False, 'Dirty'))
+    clean_state = models.BooleanField(choices=QUOTE_TAGS, default=True)
+    quote = models.CharField(max_length=140)
+
+    def __str__(self):
+        return self.quote

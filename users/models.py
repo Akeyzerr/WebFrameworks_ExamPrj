@@ -5,8 +5,12 @@ from PyWEB_Exam2.storage_backend import *
 
 
 class Profile(models.Model):
+    QUOTES_CHOICES = (
+        (True, "Yes"),
+        (False, "No"),)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='/profile/default.jpg', upload_to='profile_pics', storage=S3Boto3Storage())
+    clean_quote_of_the_day = models.BooleanField(choices=QUOTES_CHOICES, default=False)
 
     def __str__(self):
         return f'{self.user.username} Profile'
