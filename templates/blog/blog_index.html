@@ -17,10 +17,10 @@
                         <small class="text-muted">Last edited: {{ post.date_edited|date:"G:i - D, j N, Y" }}</small>
                     {% endif %}
                 </div>
-                <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
 {#                USED A CUSTOM TEMPLATE TAG#}
-                <p class="article-content">{{ post.content|post_preview:200 }}</p>
-                <a class="text-muted" href="{% url 'post-detail' post.id %}">Click here to read more.</a>
+                <p class="article-content">{{ post.content|post_preview:200|safe }}</p>
+                <a class="text-muted" href="{% url 'post-detail' post.slug %}">Click here to read more.</a>
             </div>
         </article>
     {% endfor %}

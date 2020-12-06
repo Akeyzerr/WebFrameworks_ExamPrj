@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -13,7 +14,6 @@ class PostListView(ListView):
     model = Post
     queryset = Post.objects.filter(is_public=True).order_by('-date_posted')
     template_name = 'blog/blog_index.html'
-    # context_object_name = "posts"
 
 
 class UserPostListView(ListView):
@@ -28,7 +28,7 @@ class UserPostListView(ListView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content', 'is_public']
+    fields = ['title', 'subtitle', 'content', 'is_public', 'tags']
     success_url = '/blog'
 
     def form_valid(self, form):
@@ -38,7 +38,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'is_public']
+    fields = ['title', 'subtitle', 'content', 'is_public', 'tags']
     success_url = '/blog'
 
     def form_valid(self, form):
@@ -64,12 +64,24 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 @login_required
-def detail_view(request, pk):
+def detail_view(request, slug):
     author = get_current_authenticated_user()
-    posts = Post.objects.get(pk=pk)
+    post = Post.objects.get(slug=slug)
+
+    if request.method == 'POST':
+        PostComment.objects.create(
+            comment_author=request.user,
+            to_post=post,
+            comment_body=request.POST['comment']
+        )
+        messages.success(request, "You're comment was successfuly posted!")
+
+        return redirect('post-detail', slug)
+    comments = PostComment.objects.filter(to_post=post)
     context = {
         'author': author,
-        'object': posts,
+        'object': post,
+        'comments': comments
     }
     return render(request, 'blog/post_detail.html', context)
 

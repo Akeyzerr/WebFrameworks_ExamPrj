@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import *
+from blog.models import *
+from homepage.models import *
+from users.models import *
 
 
 class EntryAdmin(admin.ModelAdmin):
@@ -27,3 +29,5 @@ class QuotesAdmin(admin.ModelAdmin):
 
 admin.site.register(Entry, EntryAdmin)
 admin.site.register(Quotes, QuotesAdmin)
+admin.site.register(Tag)
+admin.site.register(PostComment)

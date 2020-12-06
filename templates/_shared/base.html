@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <meta name="description" content="Exam Project for Django Web Frameworks course">
     <meta name="author" content="Akeyzerr">
     <title>{{ title }}Akeyzerr's Playground</title>
 </head>
 <body data-spy="scroll" data-target=".navbar" id="page-top">
 <header class="site-header">
-{#    {% include "_partials/base_nav.html" %}#}
+    {#    {% include "_partials/base_nav.html" %}#}
     {% include "_partials/base_nav_v2.html" %}
     {% block header %} {% endblock header %}
 </header>

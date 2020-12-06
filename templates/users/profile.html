@@ -17,6 +17,22 @@
                 <legend class="border-bottom mb-4">Profile Info</legend>
                 {{ user_form|crispy }}
                 {{ profile_form|crispy }}
+{#                <div id="profile-picture" class="form-control-file">#}
+{#                    <label class="required" for="profile-picture">#}
+{#                        Upload a new profile picture#}
+{#                    </label>#}
+{#                    <div class="">#}
+{#                        {{ profile_form.image }}#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div id="flash-quotes" class="form-control">#}
+{#                    <label class="requiredField" for="flash-quotes">#}
+{#                        See only 'clean' FlashQuotes?#}
+{#                    </label>#}
+{#                    <div class="">#}
+{#                        {{ profile_form.clean_quote_of_the_day }}#}
+{#                    </div>#}
+{#                </div>#}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Update profile</button>
