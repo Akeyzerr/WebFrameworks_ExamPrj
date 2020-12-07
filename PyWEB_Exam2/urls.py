@@ -19,7 +19,3 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-handler403 = 'homepage.views.permission_denied_view'
-handler404 = 'homepage.views.page_not_found_view'
-handler500 = 'homepage.views.server_error_view'

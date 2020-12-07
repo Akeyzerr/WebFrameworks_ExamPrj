@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -18,7 +19,7 @@ class Entry(models.Model):
 
     title = models.CharField(max_length=255)
     requirement = models.TextField(max_length=255, null=True, blank=True)
-    implementation = models.TextField(max_length=4000, null=True, blank=True)
+    implementation = RichTextField()
     status = models.CharField(max_length=40, choices=ENTRY_STATUS)
     state = models.CharField(max_length=40, choices=ENTRY_STATE, default=None)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)

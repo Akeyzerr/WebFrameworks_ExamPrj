@@ -11,7 +11,7 @@
                     <span><h4>{{ entry.title }}</h4>
                     <h6>{{ entry.requirement }}</h6></span>
                 </div>
-                <p class="article-title">{{ entry.implementation }}</p>
+                <p class="article-title">{{ entry.implementation|safe }}</p>
                 <div class="article-metadata"></div>
                 <div class="article-metadata">
                     <small class="text-muted">Last updated: {{ entry.date_updated|date:"G:i - D, j N, Y" }};</small>

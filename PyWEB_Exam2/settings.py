@@ -3,7 +3,6 @@ from os.path import join
 from pathlib import Path
 from decouple import config
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool)
@@ -12,7 +11,7 @@ ALLOWED_HOSTS = ["127.0.0.1",
                  "akeyzerr-exam2.herokuapp.com", ]
 
 INSTALLED_APPS = [
-    'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,6 +26,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'blog.apps.BlogConfig',
     'homepage.apps.HomepageConfig',
+    'todo.apps.TodoConfig'
 ]
 
 MIDDLEWARE = [
@@ -65,7 +65,7 @@ if USE_S3:
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
 else:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
     STATIC_URL = '/static/'
 
 STATIC_ROOT = join(BASE_DIR, 'staticfiles/')

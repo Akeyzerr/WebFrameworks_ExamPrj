@@ -1,5 +1,6 @@
 from random import choice
 
+from django.http import HttpResponseNotFound, HttpResponseServerError, HttpResponseForbidden
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from .models import *
@@ -25,13 +26,14 @@ def index(request):
     return render(request, 'homepage/homepage_index.html', context)
 
 
-def page_not_found_view(request, exception):
-    return render(request, '404.html', exception)
-
-
-def server_error_view(request):
-    return render(request, '500.html')
-
-
-def permission_denied_view(request, exception):
-    return render(request, '403.html', exception)
+# def page_not_found_view(request, exception):
+#     print(exception)
+#     return HttpResponseNotFound(request, exception,template_name='404.html')
+#
+#
+# def server_error_view(request):
+#     return HttpResponseServerError(request, '500.html')
+#
+#
+# def permission_denied_view(request, exception):
+#     return HttpResponseForbidden(request, '403.html', exception)
