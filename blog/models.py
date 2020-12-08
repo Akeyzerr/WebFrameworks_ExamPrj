@@ -60,8 +60,3 @@ class PostComment(models.Model):
 
     def __str__(self):
         return self.comment_body
-
-    # @property
-    # def create_dynamic(self):
-    #     now = timezone.now()
-    #     return now

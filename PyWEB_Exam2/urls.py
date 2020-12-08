@@ -7,9 +7,10 @@ from PyWEB_Exam2 import settings
 from homepage import views as handler_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('wizard/', admin.site.urls),
     path('', include('homepage.urls'), name='homepage'),
     path('blog/', include('blog.urls')),
+    path('todo/', include('todo.urls')),
     path('register/', user_views.register, name="register"),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name="login"),

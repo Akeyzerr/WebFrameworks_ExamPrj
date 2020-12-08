@@ -18,13 +18,16 @@ def index(request):
         else:
             quotes = choice(Quotes.objects.all())
         messages.info(request, f"{quotes}")
-    except AttributeError:
+    except AttributeError or IndexError:
         pass
     context = {
         "page_obj": page_obj,
     }
     return render(request, 'homepage/homepage_index.html', context)
 
+
+def server_error_demo(request):
+    return HttpResponseServerError('500.html')
 
 # def page_not_found_view(request, exception):
 #     print(exception)

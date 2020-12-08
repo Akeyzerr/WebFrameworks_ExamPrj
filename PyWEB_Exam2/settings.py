@@ -89,13 +89,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'PyWEB_Exam2.wsgi.application'
 
-DATABASES = {'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': config("DB_NAME"),
-    'USER': config("DB_USER"),
-    'PASSWORD': config("DB_PASSWORD"),
-    'HOST': config("DB_HOST"),
-    'PORT': '5432'}}
+TESTS = False
+
+if TESTS:
+    DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'akeyzerr',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '127.0.0.1',
+        'PORT': '5434'}}
+else:
+    DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config("DB_NAME"),
+        'USER': config("DB_USER"),
+        'PASSWORD': config("DB_PASSWORD"),
+        'HOST': config("DB_HOST"),
+        'PORT': '5432'}}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
