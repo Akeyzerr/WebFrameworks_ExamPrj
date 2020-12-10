@@ -17,7 +17,12 @@ class PostListView(ListView):
 
 
 class UserPostListView(ListView):
-    paginate_by = 4
+    try:
+        user = get_current_authenticated_user()
+        user_setting_pages = user.profile.blogposts_per_page
+    except AttributeError:
+        user_setting_pages = 4
+    paginate_by = user_setting_pages
     model = Post
     template_name = 'blog/user_posts.html'
 
@@ -88,8 +93,9 @@ def detail_view(request, slug):
 
 @login_required
 def all_my_posts(request):
+    user_setting_pages = request.user.profile.tasks_per_page
     posts = Post.objects.filter(author=get_current_authenticated_user()).order_by('-date_posted')
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, user_setting_pages)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

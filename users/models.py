@@ -13,6 +13,7 @@ class Profile(models.Model):
     image = models.ImageField(default='/profile/default.jpg', upload_to='profile_pics', storage=S3Boto3Storage())
     clean_quote_of_the_day = models.BooleanField(choices=QUOTES_CHOICES, default=False)
     tasks_per_page = models.IntegerField(default=3)
+    blogposts_per_page = models.IntegerField(default=3)
 
     def __str__(self):
         return f'{self.user.username} Profile'

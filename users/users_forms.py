@@ -31,4 +31,4 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image', 'clean_quote_of_the_day', 'tasks_per_page']
+        fields = ['image', 'clean_quote_of_the_day', 'blogposts_per_page', 'tasks_per_page']

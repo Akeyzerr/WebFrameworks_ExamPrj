@@ -40,5 +40,3 @@ def profile(request):
         'profile_form': profile_form,
     }
     return render(request, 'users/profile.html', content)
-
-

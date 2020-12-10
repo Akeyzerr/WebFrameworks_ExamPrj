@@ -8,34 +8,21 @@
             <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
+                <p class="text-secondary mb-5">{{ user.email }}</p>
+                <legend class="border-bottom mb-2">Profile Info</legend>
             </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
+                {#                <label class="text-muted" id="First Name">First Name: {{ user_form.first_name }}</label>#}
+                {#                <label class="text-muted" id="Last Name">Last Name: {{ user_form.last_name }}</label>#}
+                {#                <label class="text-muted" id="email">Email: {{ user_form.email }}</label>#}
                 {{ user_form|crispy }}
                 {{ profile_form|crispy }}
-{#                <div id="profile-picture" class="form-control-file">#}
-{#                    <label class="required" for="profile-picture">#}
-{#                        Upload a new profile picture#}
-{#                    </label>#}
-{#                    <div class="">#}
-{#                        {{ profile_form.image }}#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div id="flash-quotes" class="form-control">#}
-{#                    <label class="requiredField" for="flash-quotes">#}
-{#                        See only 'clean' FlashQuotes?#}
-{#                    </label>#}
-{#                    <div class="">#}
-{#                        {{ profile_form.clean_quote_of_the_day }}#}
-{#                    </div>#}
-{#                </div>#}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Update profile</button>
+                <button class="btn-sm btn-outline-info" type="submit">Update profile</button>
             </div>
         </form>
     </div>
