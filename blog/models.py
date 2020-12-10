@@ -1,10 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
 from storages.backends.s3boto3 import S3Boto3Storage
 
 from users.models import Profile

@@ -1,8 +1,15 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+from .mixins import LogOutRequiredMixin
 from .users_forms import *
+
+
+class LoginUserView(LogOutRequiredMixin, LoginView):
+    template_name = 'users/login.html'
 
 
 def register(request):
