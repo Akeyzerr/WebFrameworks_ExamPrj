@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
                 {% if post.is_public %}
-                    <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+                    <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
                     <p class="article-content">{{ post.content|post_preview:500|safe }}</p>
                 {% else %}
                     <h2><a class="article-title-private" href="{% url 'post-update' post.slug %}">{{ post.title }}</a>

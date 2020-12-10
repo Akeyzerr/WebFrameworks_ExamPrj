@@ -3,7 +3,7 @@
 {% load post_preview %}
 
 {% block content %}
-    {% include '_partials/paginator.html'%}
+    {% include '_partials/paginator.html' %}
     {% for post in page_obj %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="#">
@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
                 <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-{#                USED A CUSTOM TEMPLATE TAG#}
+                {#                USED A CUSTOM TEMPLATE TAG#}
                 <p class="article-content">{{ post.content|post_preview:200|safe }}</p>
                 <a class="text-muted" href="{% url 'post-detail' post.slug %}">Click here to read more.</a>
             </div>

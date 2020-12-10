@@ -28,15 +28,3 @@ def index(request):
 
 def server_error_demo(request):
     return HttpResponseServerError('500.html')
-
-# def page_not_found_view(request, exception):
-#     print(exception)
-#     return HttpResponseNotFound(request, exception,template_name='404.html')
-#
-#
-# def server_error_view(request):
-#     return HttpResponseServerError(request, '500.html')
-#
-#
-# def permission_denied_view(request, exception):
-#     return HttpResponseForbidden(request, '403.html', exception)

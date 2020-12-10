@@ -12,7 +12,7 @@
     {% block header %} {% endblock header %}
 </header>
 
-<main role="main" class="container" style="margin-top:70px" style="margin-bottom:-100px">
+<main role="main" class="container" >
     <div class="row">
         <div class="col-md-8">
             {% include '_partials/messages.html' %}
@@ -20,11 +20,14 @@
         </div>
         <div class="col-md-4">
             {% include "_partials/sidebar.html" %}
+            {% if tasks_search %}
+                {% include 'todo/todo_search.html'%}
+            {% endif %}
         </div>
     </div>
 </main>
 
-<footer>
+<footer class="footer">
     <div>Python Web Frameworks Final Exam Project 2020.12.16 @SoftUni</div>
 </footer>
 </body>

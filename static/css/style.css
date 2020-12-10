@@ -1,10 +1,11 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');*/
 footer {
+    opacity: 0.3;
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     background: linear-gradient(to right, #5f788a 75%, #3e4d59 100%);
     width: 100%;
-    padding: 6px 0;
+    padding: 5px 0;
 }
 
 footer div {
@@ -13,90 +14,95 @@ footer div {
 }
 
 body {
-  background: linear-gradient(to right, #dae0e6 50%, #bfcdd9 100%);
+    background: linear-gradient(to right, #dae0e6 50%, #bfcdd9 100%);
+    margin-top: 4em;
+    margin-bottom: 1.5em;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+    color: #444444;
 }
 
 ul {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 .bg-steel {
-  background: linear-gradient(to right, #5f788a 75%, #3e4d59 100%);
+    background: linear-gradient(to right, #5f788a 75%, #3e4d59 100%);
 
 }
 
 .site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+    color: #cbd5db;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+    font-weight: 600;
+    font-size: 1.1em;
 }
 
 .content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  overflow: visible;
+    background: linear-gradient(178deg, rgba(252, 252, 250, 1), rgb(240, 241, 242));
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: visible;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.11), -1px -1px 1px 0 rgba(20, 20, 20, 0.06);
+
 }
 
 .article-title {
-  color: #444444;
+    color: #444444;
 }
 
 .article-title-private {
-  color: #8c6362;
+    color: #8c6362;
 }
 
 a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+    color: #428bca;
+    text-decoration: none;
 }
 
 .article-content {
-  white-space: pre-line;
+    white-space: pre-line;
 }
 
 .article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
 }
 
 .article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
 }
 
 .article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+    color: #333;
+    text-decoration: none;
 }
 
 .article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
 }
 
 .account-img {
-  height: 150px;
-  width: 150px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+    height: 150px;
+    width: 150px;
+    margin-right: 20px;
+    margin-bottom: 16px;
 }
 
 .account-heading {
-  font-size: 2.5rem;
+    font-size: 2.5rem;
 }

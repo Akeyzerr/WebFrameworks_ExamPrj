@@ -1,0 +1,11 @@
+{% load crispy_forms_tags %}
+
+<div class="content-section">
+    <form id="searchform" method="GET">
+        <legend class="border-bottom mb-4"><h3> Search tasks: </h3></legend>
+        {{ filter.form|crispy }}
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Search</button>
+        </div>
+    </form>
+</div>

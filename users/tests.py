@@ -7,7 +7,7 @@ class TestProfileCreation(TestCase):
     def setUp(self):
         username = 'Test1'
         email = 'test@email.com'
-        password1 = 'asdf1234qwer'
+        password1 = 's3cr3tp4ssw0rd'
         testuser = User(
             username=username,
             email=email,

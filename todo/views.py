@@ -1,59 +1,47 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect
 from django.views.generic import UpdateView, DeleteView
-from django_currentuser.middleware import get_current_authenticated_user
-
+from .filters import TaskFilter
 from .models import Task
-# from .todo_forms import TaskForm
+from .todo_forms import TaskForm
 
 
 @login_required
 def index(request):
-    tasks = Task.objects.filter(user=request.user).order_by("created")
-    # form = TaskForm()
-    user = get_current_authenticated_user()
+    user_setting_pages = request.user.profile.tasks_per_page
+    tasks = Task.objects.filter(user=request.user).order_by("-created")
+    form = TaskForm()
+    filter_tasks = TaskFilter(request.GET, queryset=tasks)
+    tasks = filter_tasks.qs
+
     if request.method == "POST":
-        Task.objects.create(
-            user = user,
-            title=request.POST['title']
-        )
-        # form = TaskForm(request.POST)
-        # if form.is_valid():
-        #     form.save()
-        # return redirect('todo-app')
-    context = {"tasks": tasks,
-               # "form": form,
-              }
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('todo-app')
+
+    if tasks:
+        paginator = Paginator(tasks, user_setting_pages)
+        try:
+            tasks = paginator.page(request.GET.get('page'))
+        except PageNotAnInteger:
+            tasks = paginator.page(1)
+        except EmptyPage:
+            tasks = paginator.page(paginator.num_pages)
+
+    context = {"page_obj": tasks,
+               "form": form,
+               "filter": filter_tasks,
+               "tasks_search": True,
+               }
     return render(request, 'todo/list.html', context)
-
-
-# def update_task(request, pk):
-#     title = "Update Task"
-#     task = Task.objects.get(id=pk)
-#     form = TaskForm(instance=task)
-#     if request.method == "POST":
-#         form = TaskForm(request.POST, instance=task)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("todo/")
-#     context = {'form': form,
-#                'page_title': title}
-#     return render(request, "todo/update_task.html", context)
-#
-#
-# def delete_task(request, pk):
-#     item = Task.objects.get(id=pk)
-#     if request.method == "POST":
-#         item.delete()
-#         return redirect("todo/")
-#     context = {"item":item}
-#     return render(request, 'todo/delete.html', context)
 
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
-    fields = ['title',]
+    fields = ['title', 'complete', 'tags']
     success_url = '/todo'
 
     def form_valid(self, form):
