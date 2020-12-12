@@ -2,6 +2,11 @@ from django.test import TestCase
 
 from django.contrib.auth.models import User
 
+"""
+    settings.TEST must be True in order to run tests;
+    OR, the DB in use must have full permissions.
+"""
+
 
 class HomeUnauthenticatedUser(TestCase):
     def setUp(self):

@@ -4,30 +4,41 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .models import *
-from django_currentuser.middleware import get_current_authenticated_user
+from django_currentuser.middleware import get_current_authenticated_user, get_current_user
 from django.core.paginator import Paginator
 
 
+def get_user_settings_posts_per_page(user):
+    """ Unauthenticated user has no attribute user_setting_pages """
+    try:
+        user_setting_pages = user.profile.blogposts_per_page
+    except AttributeError:
+        user_setting_pages = 4
+
+    return user_setting_pages
+
+
 class PostListView(ListView):
-    paginate_by = 3
+    def get_paginate_by(self, *args, **kwargs):
+        user = get_current_authenticated_user()
+        return get_user_settings_posts_per_page(user)
+
     model = Post
     queryset = Post.objects.filter(is_public=True).order_by('-date_posted')
     template_name = 'blog/blog_index.html'
 
 
 class UserPostListView(ListView):
-    try:
+    def get_paginate_by(self, *args, **kwargs):
         user = get_current_authenticated_user()
-        user_setting_pages = user.profile.blogposts_per_page
-    except AttributeError:
-        user_setting_pages = 4
-    paginate_by = user_setting_pages
+        return get_user_settings_posts_per_page(user)
+
     model = Post
     template_name = 'blog/user_posts.html'
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user, is_public=True).order_by('-date_posted')
+        selected_author = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=selected_author, is_public=True).order_by('-date_posted')
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

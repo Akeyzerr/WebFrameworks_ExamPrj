@@ -25,7 +25,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     is_public = models.BooleanField(default=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, editable=False)
 
     class Meta:
         ordering = ['-date_edited']

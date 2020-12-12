@@ -23,4 +23,3 @@ class TestProfileCreation(TestCase):
         self.assertTrue(query_profiles[0].user)
         self.assertTrue(query_profiles[0].clean_quote_of_the_day is False)
         self.assertTrue(query_profiles[0].image == '/profile/default.jpg')
-
